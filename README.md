@@ -7,5 +7,4 @@ Template project for a quick start
 - Play Framework
 - Logback & structured logging w/ Logstash
 - Swagger
-- Memcached
-- RabbitMQ
+- MySQL

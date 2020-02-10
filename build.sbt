@@ -7,10 +7,14 @@ lazy val `template-project` = (project in file("."))
 
 libraryDependencies ++= Seq(
     // java/sbt/play basics
-    jdbc, ws, ehcache, filters, specs2 % Test, guice,
+    ws, ehcache, filters, specs2 % Test, guice,
     "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3" % Test,
     "org.webjars" % "swagger-ui" % "3.22.2",
-    "net.sourceforge.jtds" % "jtds" % "1.2.6",
+
+    // db
+    jdbc,
+    "com.typesafe.play" %% "anorm" % "2.5.3",
+    "mysql" % "mysql-connector-java" % "8.0.19",
 
     // logging libraries
     "ch.qos.logback" % "logback-classic" % "1.2.3",
@@ -18,8 +22,7 @@ libraryDependencies ++= Seq(
     "net.logstash.logback" % "logstash-logback-encoder" % "6.2",
 
     // other tools
-    "com.github.mumoshu" %% "play2-memcached-play27" % "0.10.0" exclude("net.spy", "spymemcached"),
-    "com.newmotion" %% "akka-rabbitmq" % "5.1.1"
+    "com.github.mumoshu" %% "play2-memcached-play27" % "0.10.0" exclude("net.spy", "spymemcached")
 )
 
 unmanagedResourceDirectories in Test += baseDirectory( _ /"target/web/public/test" ).value
@@ -30,6 +33,6 @@ resolvers ++= Seq(
     "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
 )
 
-swaggerDomainNameSpaces := Seq("xyz.meggls.template")
+swaggerDomainNameSpaces := Seq("xyz.meggls")
 
 routesGenerator := InjectedRoutesGenerator
